@@ -49,7 +49,7 @@ If you want to run on a different hostname or port then change the default value
    http-port = 8095
 
 
-Currently the path to ncl is hardcoded in the ``../esmval.sh`` script to the path ``/opt/ncl``.
+The demo service uses the ncl package (version 6.3.0) from conda. If you want to use a different ncl then edit the ``../esmval.sh`` script.
 
 The path to ESGF archive is configured in ``../nml/to_be/checked/esgf_config.xml``.
 
