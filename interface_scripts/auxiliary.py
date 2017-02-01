@@ -103,9 +103,10 @@ def ncl_version_check():
         error("NCL not found")
 
     if out[1] == "6.3.0":
-        error("NCL version " + out[1] + 
-              " not supported due to a bug " + 
-              "(see Known Issues in the ESMValTool user guide)")
+        info("You are using 6.3.0 which is not supported due to a bug!", 1, 1)
+        #error("NCL version " + out[1] + 
+        #      " not supported due to a bug " + 
+        #      "(see Known Issues in the ESMValTool user guide)")
 
     if int(out[1].split(".")[0]) < 6:
         error("NCL version " + out[1] + " not supported, need version 6.2.0 or higher")
