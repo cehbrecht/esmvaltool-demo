@@ -7,11 +7,11 @@ Installation
 ************
 
 The installation is done with `Buildout <http://www.buildout.org/>`_.
-It is using the Python distribution system `Anaconda <http://www.continuum.io/>`_ to maintain software dependencies. 
- 
-If Anaconda is not available then a minimal Anaconda will be installed during the installation processes in your home directory ``~/anaconda``. 
+It is using the Python distribution system `Anaconda <http://www.continuum.io/>`_ to maintain software dependencies.
 
-The installation process setups a conda environment named ``wps``. All additional packages and configuration files are going into this conda environment. 
+If Anaconda is not available then a minimal Anaconda will be installed during the installation processes in your home directory ``~/anaconda``.
+
+The installation process setups a conda environment named ``wps``. All additional packages and configuration files are going into this conda environment.
 The location is ``~/.conda/envs/wps``.
 
 Now, check out the code from the ESMValTool subversion repo and start the installation::
@@ -46,7 +46,7 @@ If you want to run on a different hostname or port then change the default value
    $ cat custom.cfg
    [settings]
    hostname = localhost
-   http-port = 8096
+   http-port = 8095
 
 
 Currently the path to ncl is hardcoded in the ``../esmval.sh`` script to the path ``/opt/ncl``.
@@ -71,13 +71,3 @@ http://emu.readthedocs.org/en/latest/
 
 Birdhouse: Web Processing Services to support data processing in the climate science community:
 http://bird-house.github.io/
-
-
-
-
-
-
-
-
-
-
