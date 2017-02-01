@@ -11,6 +11,7 @@ if [ $# -ne 2 ]; then
     exit 1
 fi
 
+# Set path to ncl if not configured from outside.
 #NCARG_ROOT="/opt/ncl"
 #export NCARG_ROOT
 #PATH="$NCARG_ROOT/bin:$PATH"
