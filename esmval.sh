@@ -11,9 +11,10 @@ if [ $# -ne 2 ]; then
     exit 1
 fi
 
-export NCARG_ROOT="/opt/ncl"
-PATH="$NCARG_ROOT/bin:$PATH"
-export PATH
+#NCARG_ROOT="/opt/ncl"
+#export NCARG_ROOT
+#PATH="$NCARG_ROOT/bin:$PATH"
+#export PATH
 
 cd "$esmval_root"
 #which ncl 2>&1 | tee $2

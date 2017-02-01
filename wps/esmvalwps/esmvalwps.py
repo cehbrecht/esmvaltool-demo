@@ -4,7 +4,7 @@ import glob
 from subprocess import check_output, STDOUT
 
 import logging
-logger = logging.getLogger("PYWPS")
+LOGGER = logging.getLogger("PYWPS")
 
 from mako.lookup import TemplateLookup
 mylookup = TemplateLookup(directories=[os.path.join(os.path.dirname(__file__), 'templates')],
@@ -36,16 +36,14 @@ def diag(name, constraints, start_year, end_year, output_format='ps'):
         # plot output
         out = find_plot(workspace, output_format)
     except:
-        logger.exception("diag %s failed!", name)
+        LOGGER.exception("diag %s failed!", name)
         raise
     return out, namelist, log_file, reference
 
 
 def run_esmvaltool(namelist, workspace='.'):
-    # set ncl path
-    # ncarg_root = '/home/pingu/opt/ncl'  # config.getConfigValue("esmvalwps", "ncarg_root")
-    # os.environ['NCARG_ROOT'] = ncarg_root.strip()
-    # os.environ['PATH'] = os.environ['NCARG_ROOT'] + '/bin' + ':' + os.environ['PATH']
+    # ncl path
+    LOGGER.debug("NCARG_ROOT=%s", os.environ.get('NCARG_ROOT'))
 
     # build cmd
     script = os.path.join(ESMVAL_ROOT, "esmval.sh")
@@ -56,13 +54,12 @@ def run_esmvaltool(namelist, workspace='.'):
     try:
         check_output(cmd, stderr=STDOUT)
     except:
-        logger.exception('esmvaltool failed!')
+        LOGGER.exception('esmvaltool failed!')
 
     # debug: show logfile
-    if logger.isEnabledFor(logging.DEBUG):
+    if LOGGER.isEnabledFor(logging.DEBUG):
         with open(log_file, 'r') as f:
-            logger.debug(f.read())
-
+            LOGGER.debug(f.read())
     return log_file
 
 
@@ -93,5 +90,5 @@ def find_plot(workspace='.', output_format="pdf"):
         raise Exception("no result plot found in workspace/plots")
     elif len(matches) > 1:
         raise Exception("more then one plot found %s", matches)
-    logger.debug("plot file found=%s", matches[0])
+    LOGGER.debug("plot file found=%s", matches[0])
     return matches[0]
