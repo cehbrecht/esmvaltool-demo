@@ -11,7 +11,8 @@ It is using the Python distribution system `Anaconda <http://www.continuum.io/>`
  
 If Anaconda is not available then a minimal Anaconda will be installed during the installation processes in your home directory ``~/anaconda``. 
 
-The installation process setups a conda environment named ``wps``. All additional packages and configuration files are going into this conda environment. The location is ``~/.conda/envs/wps``.
+The installation process setups a conda environment named ``wps``. All additional packages and configuration files are going into this conda environment. 
+The location is ``~/.conda/envs/wps``.
 
 Now, check out the code from the ESMValTool subversion repo and start the installation::
 
