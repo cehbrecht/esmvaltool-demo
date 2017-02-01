@@ -18,18 +18,24 @@ Makefile.config
 *.egg-info
 *.sqlite
 *.bak
-.cache
 
 # Unit test / Coverage reports
+.cache
 .coverage
 .tox
 nosetests.xml
 unit_tests/testdata.json
 
+# R 
+*.Rhistory
+
 # Eclipse / PyDev
 .project
 .pydevproject
 .settings
+
+# PyCharm
+*.idea
 
 # Kate
 *.kate-swp
@@ -64,3 +70,15 @@ docs/build/
 # tests
 *.log
 *.lock
+testdata.json
+
+# IPython
+.ipynb_checkpoints
+
+# gcc/fortran
+*.o
+*.a
+*.mod
+*.out
+
+
