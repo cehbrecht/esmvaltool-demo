@@ -1,0 +1,11 @@
+name: esmvaltool
+channels:
+- defaults
+- conda-forge
+dependencies:
+- python=2.7
+- cdo
+- basemap
+- netcdf4
+- esgf-pyclient
+- ipython

@@ -1,0 +1,157 @@
+<namelist>
+<include href="./config_private_DLR-PA2.xml"/>
+<namelist_summary>
+###############################################################################
+namelist_lauer16rse_aerosol.xml
+
+Description
+Namelist for reproducing the aerosol plots in Lauer et al. 2016
+
+Authors
+Mattia Righi (DLR, Germany - mattia.righi@dlr.de)
+
+Project
+ESA CMUG
+
+Reference
+Lauer et al., to be submitted to Remote Sensing of the Environment
+
+This namelist is part of the ESMValTool
+###############################################################################
+</namelist_summary>
+
+<GLOBAL>
+    <write_plots type="boolean">              True         </write_plots>
+    <write_netcdf type="boolean">             True         </write_netcdf>
+    <force_processing type="boolean">        False         </force_processing>
+    <wrk_dir type="path">                    @{WORKPATH}   </wrk_dir>
+    <plot_dir type="path">                   @{PLOTPATH}   </plot_dir>
+    <climo_dir type="path">                  @{CLIMOPATH}  </climo_dir>
+    <write_plot_vars type="boolean">          True         </write_plot_vars>
+    <max_data_filesize type="integer">         100         </max_data_filesize>
+    <max_data_blocksize type="integer">        500         </max_data_blocksize>
+    <verbosity  type="integer">                  1         </verbosity>
+    <exit_on_warning  type="boolean">        False         </exit_on_warning>
+    <output_file_type>                          ps         </output_file_type>
+    <force_calc type="boolean">              False         </force_calc>
+    <force_gradecalc type="boolean">         False         </force_gradecalc>
+    <force_taylorcalc type="boolean">        False         </force_taylorcalc>
+</GLOBAL>
+
+<MODELS>
+
+
+</MODELS>
+
+<DIAGNOSTICS>
+
+<!-- ### AEROSOL OPTICAL DEPTH 550 nm ########################################################################################################### -->
+<diag>
+    <description>          Aerosol optical depth 550 nm </description>
+    <variable_def_dir>     ./variable_defs/             </variable_def_dir>
+    <variable ref_model="ESACCI-AEROSOL">  od550aer     </variable>
+    <field_type>           T2Ms                         </field_type>
+    <diag_script_cfg_dir>  ./nml/cfg_lauer16rse/        </diag_script_cfg_dir>
+
+<!-- CCSM4, IPSL-CM5A-LR, IPSL-CM5A-MR, MPI-ESM-LR and MPI-ESM-MR are excluded since they use concentration-driven aerosol -->
+    <model>  CMIP5_ETHZ  ACCESS1-0           aero  historical   r1i1p1  1997 2011  @{MODELPATH}/ETHZ_CMIP5/ </model>
+    <model>  CMIP5_ETHZ  ACCESS1-3           aero  historical   r1i1p1  1997 2011  @{MODELPATH}/ETHZ_CMIP5/ </model>
+    <model>  CMIP5_ETHZ  BNU-ESM             aero  historical   r1i1p1  1997 2011  @{MODELPATH}/ETHZ_CMIP5/ </model>
+    <model>  CMIP5_ETHZ  CESM1-CAM5          aero  historical   r1i1p1  1997 2011  @{MODELPATH}/ETHZ_CMIP5/ </model>
+    <model>  CMIP5_ETHZ  CSIRO-Mk3-6-0       aero  historical   r1i1p1  1997 2011  @{MODELPATH}/ETHZ_CMIP5/ </model>
+    <model>  CMIP5_ETHZ  GFDL-CM3            aero  historical   r1i1p1  1997 2011  @{MODELPATH}/ETHZ_CMIP5/ </model>
+    <model>  CMIP5_ETHZ  GFDL-ESM2G          aero  historical   r1i1p1  1997 2011  @{MODELPATH}/ETHZ_CMIP5/ </model>
+    <model>  CMIP5_ETHZ  GFDL-ESM2M          aero  historical   r1i1p1  1997 2011  @{MODELPATH}/ETHZ_CMIP5/ </model>
+    <model>  CMIP5_ETHZ  GISS-E2-H           aero  historical   r1i1p2  1997 2011  @{MODELPATH}/ETHZ_CMIP5/ </model>
+    <model>  CMIP5_ETHZ  GISS-E2-R           aero  historical   r1i1p2  1997 2011  @{MODELPATH}/ETHZ_CMIP5/ </model>
+    <model>  CMIP5_ETHZ  HadGEM2-CC          aero  historical   r1i1p1  1997 2011  @{MODELPATH}/ETHZ_CMIP5/ </model>
+    <model>  CMIP5_ETHZ  HadGEM2-ES          aero  historical   r1i1p1  1997 2011  @{MODELPATH}/ETHZ_CMIP5/ </model>
+    <model>  CMIP5_ETHZ  IPSL-CM5B-LR        aero  historical   r1i1p1  1997 2011  @{MODELPATH}/ETHZ_CMIP5/ </model>
+    <model>  CMIP5_ETHZ  MIROC4h             aero  historical   r1i1p1  1997 2011  @{MODELPATH}/ETHZ_CMIP5/ </model>
+    <model>  CMIP5_ETHZ  MIROC5              aero  historical   r1i1p1  1997 2011  @{MODELPATH}/ETHZ_CMIP5/ </model>
+    <model>  CMIP5_ETHZ  MIROC-ESM           aero  historical   r1i1p1  1997 2011  @{MODELPATH}/ETHZ_CMIP5/ </model>
+    <model>  CMIP5_ETHZ  MIROC-ESM-CHEM      aero  historical   r1i1p1  1997 2011  @{MODELPATH}/ETHZ_CMIP5/ </model>
+    <model>  CMIP5_ETHZ  MRI-CGCM3           aero  historical   r1i1p1  1997 2011  @{MODELPATH}/ETHZ_CMIP5/ </model>
+    <model>  CMIP5_ETHZ  NorESM1-M           aero  historical   r1i1p1  1997 2011  @{MODELPATH}/ETHZ_CMIP5/ </model>
+    <model>  CMIP5_ETHZ  NorESM1-ME          aero  historical   r1i1p1  1997 2011  @{MODELPATH}/ETHZ_CMIP5/ </model>
+
+    <model>  OBS         ESACCI-AEROSOL      sat          SU-v4.21      1997 2011  @{OBSPATH}/Tier2/ESACCI-AEROSOL  </model>
+
+    <!-- Lat-lon plots -->
+    <diag_script cfg="cfg_perfmetrics_latlon_annualclim_all_glob.ncl">  perfmetrics_main.ncl          </diag_script>
+
+</diag>
+
+<!-- ### ABSORPTION OPTICAL DEPTH 550 nm ######################################################################################################## -->
+<diag>
+    <description>          Absorption optical depth 550 nm </description>
+    <variable_def_dir>     ./variable_defs/                </variable_def_dir>
+    <variable ref_model="ESACCI-AEROSOL">  abs550aer       </variable>
+    <field_type>           T2Ms                            </field_type>
+    <diag_script_cfg_dir>  ./nml/cfg_lauer16rse/           </diag_script_cfg_dir>
+
+<!-- CCSM4, IPSL-CM5A-LR, IPSL-CM5A-MR, MPI-ESM-LR and MPI-ESM-MR are excluded since they use concentration-driven aerosol -->
+    <model>  CMIP5_ETHZ  CSIRO-Mk3-6-0       aero  historical   r1i1p1  1997 2011  @{MODELPATH}/ETHZ_CMIP5/ </model>
+    <model>  CMIP5_ETHZ  GFDL-CM3            aero  historical   r1i1p1  1997 2011  @{MODELPATH}/ETHZ_CMIP5/ </model>
+    <model>  CMIP5_ETHZ  GFDL-ESM2G          aero  historical   r1i1p1  1997 2011  @{MODELPATH}/ETHZ_CMIP5/ </model>
+    <model>  CMIP5_ETHZ  GFDL-ESM2M          aero  historical   r1i1p1  1997 2011  @{MODELPATH}/ETHZ_CMIP5/ </model>
+    <model>  CMIP5_ETHZ  GISS-E2-H           aero  historical   r1i1p2  1997 2011  @{MODELPATH}/ETHZ_CMIP5/ </model>
+    <model>  CMIP5_ETHZ  GISS-E2-R           aero  historical   r1i1p2  1997 2011  @{MODELPATH}/ETHZ_CMIP5/ </model>
+    <model>  CMIP5_ETHZ  IPSL-CM5B-LR        aero  historical   r1i1p1  1997 2011  @{MODELPATH}/ETHZ_CMIP5/ </model>
+    <model>  CMIP5_ETHZ  MIROC5              aero  historical   r1i1p1  1997 2011  @{MODELPATH}/ETHZ_CMIP5/ </model>
+    <model>  CMIP5_ETHZ  MIROC-ESM           aero  historical   r1i1p1  1997 2011  @{MODELPATH}/ETHZ_CMIP5/ </model>
+    <model>  CMIP5_ETHZ  MIROC-ESM-CHEM      aero  historical   r1i1p1  1997 2011  @{MODELPATH}/ETHZ_CMIP5/ </model>
+    <model>  CMIP5_ETHZ  NorESM1-M           aero  historical   r1i1p1  1997 2011  @{MODELPATH}/ETHZ_CMIP5/ </model>
+    <model>  CMIP5_ETHZ  NorESM1-ME          aero  historical   r1i1p1  1997 2011  @{MODELPATH}/ETHZ_CMIP5/ </model>
+
+    <model>  OBS         ESACCI-AEROSOL      sat          SU-v4.21      1997 2011  @{OBSPATH}/Tier2/ESACCI-AEROSOL  </model>
+
+    <!-- Lat-lon plots -->
+    <diag_script cfg="cfg_perfmetrics_latlon_annualclim_all_glob.ncl">  perfmetrics_main.ncl          </diag_script>
+</diag>
+
+<!-- ### FINE MODE OPTICAL DEPTH 550 nm ######################################################################################################### -->
+<diag>
+    <description>          Fine mode optical depth 550 nm </description>
+    <variable_def_dir>     ./variable_defs/               </variable_def_dir>
+    <variable ref_model="ESACCI-AEROSOL">  od550lt1aer    </variable>
+    <field_type>           T2Ms                           </field_type>
+    <diag_script_cfg_dir>  ./nml/cfg_lauer16rse/   </diag_script_cfg_dir>
+
+<!-- CCSM4, IPSL-CM5A-LR, IPSL-CM5A-MR, MPI-ESM-LR and MPI-ESM-MR are excluded since they use concentration-driven aerosol -->
+    <model>  CMIP5_ETHZ  CSIRO-Mk3-6-0       aero  historical   r1i1p1  1997 2011  @{MODELPATH}/ETHZ_CMIP5/ </model>
+    <model>  CMIP5_ETHZ  GFDL-CM3            aero  historical   r1i1p1  1997 2011  @{MODELPATH}/ETHZ_CMIP5/ </model>
+    <model>  CMIP5_ETHZ  GFDL-ESM2G          aero  historical   r1i1p1  1997 2011  @{MODELPATH}/ETHZ_CMIP5/ </model>
+    <model>  CMIP5_ETHZ  GFDL-ESM2M          aero  historical   r1i1p1  1997 2011  @{MODELPATH}/ETHZ_CMIP5/ </model>
+    <model>  CMIP5_ETHZ  GISS-E2-H           aero  historical   r1i1p2  1997 2011  @{MODELPATH}/ETHZ_CMIP5/ </model>
+    <model>  CMIP5_ETHZ  GISS-E2-R           aero  historical   r1i1p2  1997 2011  @{MODELPATH}/ETHZ_CMIP5/ </model>
+    <model>  CMIP5_ETHZ  IPSL-CM5B-LR        aero  historical   r1i1p1  1997 2011  @{MODELPATH}/ETHZ_CMIP5/ </model>
+    <model>  CMIP5_ETHZ  MIROC5              aero  historical   r1i1p1  1997 2011  @{MODELPATH}/ETHZ_CMIP5/ </model>
+    <model>  CMIP5_ETHZ  MIROC-ESM           aero  historical   r1i1p1  1997 2011  @{MODELPATH}/ETHZ_CMIP5/ </model>
+    <model>  CMIP5_ETHZ  MIROC-ESM-CHEM      aero  historical   r1i1p1  1997 2011  @{MODELPATH}/ETHZ_CMIP5/ </model>
+    <model>  CMIP5_ETHZ  MRI-CGCM3           aero  historical   r1i1p1  1997 2011  @{MODELPATH}/ETHZ_CMIP5/ </model>
+
+    <model>  OBS         ESACCI-AEROSOL      sat          SU-v4.21      1997 2011  @{OBSPATH}/Tier2/ESACCI-AEROSOL  </model>
+
+    <!-- Lat-lon plots -->
+    <diag_script cfg="cfg_perfmetrics_latlon_annualclim_all_glob.ncl">  perfmetrics_main.ncl          </diag_script>
+</diag>
+
+
+<!-- ### COMPARISON OF THE 2 SATELLITE PRODUCTS ################################################################################################# -->
+
+    <diag>
+        <description>         Aerosol optical depth at 550 nm </description>
+        <variable_def_dir>    ./variable_defs/                </variable_def_dir>
+        <variable>            od550aer                        </variable>
+        <field_type>          T2Ms                            </field_type>
+        <diag_script_cfg_dir> ./nml/cfg_lauer16rse/           </diag_script_cfg_dir>
+
+        <model>  OBS         ESACCI-AEROSOL      sat          SU-v4.21      2003 2011  @{OBSPATH}/Tier2/ESACCI-AEROSOL  </model>
+        <model>  OBS         MODIS               sat          L3-C6         2003 2011  @{OBSPATH}/Tier2/MODIS-L3-C6     </model>
+
+        <diag_script cfg="cfg_aerosol_stations_AERONET.ncl">                     aerosol_stations.ncl          </diag_script>
+    </diag>
+
+</DIAGNOSTICS>
+</namelist>
