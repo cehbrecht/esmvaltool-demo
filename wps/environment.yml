@@ -5,19 +5,17 @@ channels:
 - conda-forge
 dependencies:
 - python=2.7
-- pyopenssl=16.2.0
-- cryptography=1.5.3
-#- pyyaml=3.11
-- curl=7.45.0
+- pyopenssl
+- cryptography
 # buildout
-- mako=1.0.4
+- mako
 # tests
 - pytest
 - flake8
 # ipython
 - ipython
 # docs
-- sphinx=1.4.1
+- sphinx
 - sphinx_rtd_theme
 # wps
 - pywps=4.0.0
