@@ -9,7 +9,7 @@
 
     <!-- User control options -->
     <!-- 1. Search ESGF if dataset not found locally (True/False) -->
-    <search_ESGF> True </search_ESGF>
+    <search_ESGF> False </search_ESGF>
 
     <!-- Start of online search configuration options -->
     <!-- Note: if ESGF_search = False all these can be left blank -->
