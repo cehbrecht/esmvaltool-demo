@@ -63,6 +63,11 @@ def run_diag(namelist, workspace='.'):
     if LOGGER.isEnabledFor(logging.DEBUG):
         with open(logfile, 'r') as f:
             LOGGER.debug(f.read())
+
+    # check if data is found
+    if os.path.isfile(os.path.join(workspace, 'esgf_coupling_report.txt')):
+        raise Exception("Could not find data in ESGF archive.")
+
     return logfile
 
 
