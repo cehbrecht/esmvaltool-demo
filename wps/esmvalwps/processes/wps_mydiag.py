@@ -84,23 +84,24 @@ class MyDiag(Process):
             constraints['cmor_table'] = 'day'
 
         # generate namelist
-        namelist = runner.generate_namelist(
-            diag='mydiag',
+        result = runner.diag(
+            'mydiag',
             constraints=constraints,
             start_year=request.inputs['start_year'][0].data,
-            end_year=request.inputs['end_year'][0].data)
+            end_year=request.inputs['end_year'][0].data,
+            output_format='pdf')
 
+        # namelist output
         response.outputs['namelist'].output_format = FORMATS.TEXT
-        response.outputs['namelist'].file = namelist
+        response.outputs['namelist'].file = result['namelist']
 
-        # run esmvaltool
-        logfile = runner.run_esmvaltool(namelist)
-
+        # log output
         response.outputs['log'].output_format = FORMATS.TEXT
-        response.outputs['log'].file = logfile
+        response.outputs['log'].file = result['logfile']
 
         # find result plot
         # response.outputs['output'].output_format = FORMATS.PDF
-        response.outputs['output'].file = runner.find_plot()
+        response.outputs['output'].file = result['output']
+
 
         return response
