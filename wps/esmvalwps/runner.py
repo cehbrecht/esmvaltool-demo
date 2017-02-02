@@ -15,12 +15,13 @@ mylookup = TemplateLookup(directories=[os.path.join(os.path.dirname(__file__), '
 ESMVAL_ROOT = os.path.join(os.path.dirname(__file__), '..', '..')
 
 
-def diag(name, constraints, start_year, end_year, output_format='ps'):
+def diag(name, constraints, start_year, end_year, output_format='pdf', workspace=None):
     # TODO: maybe use result dict
-    out = namelist = log_file = reference = None
+    result = {}
+    workspace = workspace or os.curdir
 
     try:
-        namelist = generate_namelist(
+        result['namelist'] = generate_namelist(
             diag=name,
             workspace=workspace,
             constraints=constraints,
@@ -30,27 +31,27 @@ def diag(name, constraints, start_year, end_year, output_format='ps'):
         )
 
         # run diag
-        log_file = esmvaltool(namelist, workspace)
+        result['logfile'] = run_diag(result['namelist'], workspace)
 
         # references/acknowledgements document
-        reference = os.path.join(workspace, 'work', 'namelist.txt')
+        result['reference'] = os.path.join(workspace, 'work', 'namelist.txt')
 
         # plot output
-        out = find_plot(workspace, output_format)
+        result['output'] = find_plot(workspace, output_format)
     except:
         LOGGER.exception("diag %s failed!", name)
         raise
-    return out, namelist, log_file, reference
+    return result
 
 
-def run_esmvaltool(namelist, workspace='.'):
+def run_diag(namelist, workspace='.'):
     # ncl path
     LOGGER.debug("NCARG_ROOT=%s", os.environ.get('NCARG_ROOT'))
 
     # build cmd
     script = os.path.join(ESMVAL_ROOT, "esmval.sh")
-    log_file = os.path.abspath(os.path.join(workspace, 'log.txt'))
-    cmd = [script, namelist, log_file]
+    logfile = os.path.abspath(os.path.join(workspace, 'log.txt'))
+    cmd = [script, namelist, logfile]
 
     # run cmd
     try:
@@ -60,12 +61,12 @@ def run_esmvaltool(namelist, workspace='.'):
 
     # debug: show logfile
     if LOGGER.isEnabledFor(logging.DEBUG):
-        with open(log_file, 'r') as f:
+        with open(logfile, 'r') as f:
             LOGGER.debug(f.read())
-    return log_file
+    return logfile
 
 
-def generate_namelist(diag, constraints=None, start_year=2000, end_year=2005, workspace='.', output_format='pdf'):
+def generate_namelist(diag, constraints=None, start_year=2000, end_year=2005, output_format='pdf', workspace='.'):
     constraints = constraints or {}
     workspace = os.path.abspath(workspace)
 
