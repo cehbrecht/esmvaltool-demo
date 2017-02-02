@@ -4,7 +4,7 @@ from pywps import ComplexInput, ComplexOutput
 from pywps import Format, FORMATS
 from pywps.app.Common import Metadata
 
-from esmvalwps import esmvalwps
+from esmvalwps import runner
 
 import logging
 LOGGER = logging.getLogger("PYWPS")
@@ -84,7 +84,7 @@ class MyDiag(Process):
             constraints['cmor_table'] = 'day'
 
         # generate namelist
-        namelist = esmvalwps.generate_namelist(
+        namelist = runner.generate_namelist(
             diag='mydiag',
             constraints=constraints,
             start_year=request.inputs['start_year'][0].data,
@@ -94,13 +94,13 @@ class MyDiag(Process):
         response.outputs['namelist'].file = namelist
 
         # run esmvaltool
-        logfile = esmvalwps.run_esmvaltool(namelist)
+        logfile = runner.run_esmvaltool(namelist)
 
         response.outputs['log'].output_format = FORMATS.TEXT
         response.outputs['log'].file = logfile
 
         # find result plot
         # response.outputs['output'].output_format = FORMATS.PDF
-        response.outputs['output'].file = esmvalwps.find_plot()
+        response.outputs['output'].file = runner.find_plot()
 
         return response

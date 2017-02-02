@@ -19,20 +19,11 @@
 
     <!-- Start of local configuration options -->
     <!-- 1. Location of report containing user advice if dataset is not on local system-->
-    <report_fullpath>./esgf_coupling_report.txt</report_fullpath>
+    <report_fullpath>${workspace}/esgf_coupling_report.txt</report_fullpath>
     <!-- End of local search configuration options -->
 
-    <!-- ESGF node specific configuration details -->
-    <BADC>
-        <!--<cache_root> /foobar/badc </cache_root> Use this to force a ESGF search even when dataset is present-->
-        <cache_root> /badc </cache_root>
-        <cache_template id='CMIP5_template'>
-        cmip5/data/cmip5/[product]/[institute]/[model]/[experiment]/[time_freq]/[realm]/[mip]/[ensemble]/[version]/[variable]
-        </cache_template>
-    </BADC>
-
     <DKRZ_CMIP5>
-        <cache_root> /work/kd0956/CMIP5/data/ </cache_root>
+        <cache_root> ${archive_root} </cache_root>
         <cache_template id='CMIP5_template'>
         cmip5/[product]/[institute]/[model]/[experiment]/[time_freq]/[realm]/[mip]/[ensemble]/[version]/[variable]
         </cache_template>

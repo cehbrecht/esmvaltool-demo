@@ -1,7 +1,7 @@
 from malleefowl import config
 
 from esmvalwps.process import ESMValToolProcess
-from esmvalwps import esmvalwps
+from esmvalwps import runner
 
 from malleefowl import wpslogging as logging
 logger = logging.getLogger(__name__)
@@ -28,15 +28,15 @@ class AnnualCycleProcess(ESMValToolProcess):
     def execute(self):
         self.show_status("starting", 0)
 
-        constraints= esmvalwps.build_constraints(
+        constraints= runner.build_constraints(
             project="CMIP5",
             models=self.getInputValues(identifier='model'),
             variable=self.variable.getValue(),
             cmor_table=self.cmor_table.getValue(),
             experiment=self.experiment.getValue(),
             ensemble=self.ensemble.getValue())
-        
-        out, namelist, log_file, reference = esmvalwps.diag(
+
+        out, namelist, log_file, reference = runner.diag(
             name="anncycle",
             credentials=self.credentials.getValue(),
             constraints=constraints,
@@ -44,7 +44,7 @@ class AnnualCycleProcess(ESMValToolProcess):
             end_year=self.end_year.getValue(),
             output_format=self.output_format.getValue(),
             monitor=self.show_status)
-        
+
         self.show_status("done", 100)
 
         self.output.setValue(out)
@@ -55,6 +55,3 @@ class AnnualCycleProcess(ESMValToolProcess):
         # TODO: get legend plot output
         # gsnapp.epsi
         #out = find_plot(workspace, "epsi")
-        
-
- 

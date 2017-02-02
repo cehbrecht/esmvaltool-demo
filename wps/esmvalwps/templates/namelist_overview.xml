@@ -24,7 +24,7 @@
   </DIAGNOSTICS>
 
   <ESGF>
-    <config_file>${prefix}/nml/to_be_checked/esgf_config.xml</config_file>
+    <config_file>${workspace}/esgf_config.xml</config_file>
   </ESGF>
 
 </namelist>

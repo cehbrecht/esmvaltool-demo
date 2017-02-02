@@ -23,12 +23,12 @@ This namelist is generated.
         <field_type>          T3M                  </field_type>
         <diag_script_cfg_dir> ${prefix}/nml/cfg_MyDiag/    </diag_script_cfg_dir>
 
-        <diag_script cfg="cfg_MyDiag.ncl"> MyDiag.ncl  </diag_script>
+        <diag_script cfg="cfg_MyDiag.ncl"> MyDiag.ncl </diag_script>
     </diag>
   </DIAGNOSTICS>
 
   <ESGF>
-    <config_file>${prefix}/nml/to_be_checked/esgf_config.xml</config_file>
+    <config_file>${workspace}/esgf_config.xml</config_file>
   </ESGF>
 
 </namelist>
