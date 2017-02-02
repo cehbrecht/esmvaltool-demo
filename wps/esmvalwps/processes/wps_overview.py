@@ -23,11 +23,6 @@ class Overview(Process):
                          data_type='string',
                          allowed_values=['historical', 'rcp26', 'rcp45', 'rcp85'],
                          default='historical'),
-            # LiteralInput('time_frequency', 'Time frequency',
-            #              abstract='Choose a time frequency like mon.',
-            #              data_type='string',
-            #              allowed_values=['mon', 'day'],
-            #              default='mon'),
             LiteralInput('ensemble', 'Ensemble',
                          abstract='Choose an ensemble like r1i1p1.',
                          data_type='string',
@@ -59,12 +54,15 @@ class Overview(Process):
             self._handler,
             identifier="overview",
             title="ESMValTool: surface contour plot for precipitation",
-            version="1.0",
-            abstract="Tutorial contour plot used in the doc/overview.pdf.",
-            # profile=['birdhouse'],
+            version="1.0.1",
+            abstract="Tutorial contour plot used in the doc/overview.pdf."
+                     " The default run uses the following CMIP5 data: "
+                     "project=CMIP5, experiment=historical, ensemble=r1i1p1, variable=pr, model=MPI-ESM-LR, time_frequency=mon",  # noqa
             metadata=[
                 Metadata('Birdhouse', 'http://bird-house.github.io/'),
-                Metadata('ESMValTool', 'http://www.esmvaltool.org/')],
+                Metadata('ESMValTool', 'http://www.esmvaltool.org/'),
+                Metadata('ESGF Testdata', 'https://esgf1.dkrz.de/thredds/catalog/esgcet/7/cmip5.output1.MPI-M.MPI-ESM-LR.historical.mon.atmos.Amon.r1i1p1.v20120315.html?dataset=cmip5.output1.MPI-M.MPI-ESM-LR.historical.mon.atmos.Amon.r1i1p1.v20120315.pr_Amon_MPI-ESM-LR_historical_r1i1p1_185001-200512.nc'),  # noqa
+            ],
             inputs=inputs,
             outputs=outputs,
             status_supported=True,
@@ -75,13 +73,10 @@ class Overview(Process):
         constraints = dict(
             model=request.inputs['model'][0].data,
             experiment=request.inputs['experiment'][0].data,
-            time_frequency='mon',  # request.inputs['time_frequency'][0].data,
+            time_frequency='mon',
+            cmor_table='Amon',
             ensemble=request.inputs['ensemble'][0].data,
         )
-        if constraints['time_frequency'] == 'mon':
-            constraints['cmor_table'] = 'Amon'
-        else:
-            constraints['cmor_table'] = 'day'
 
         # generate namelist
         result = runner.diag(
