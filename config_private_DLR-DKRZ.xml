@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- User-defined configuration file for DLR-PA2 cluster -->
+<settings>
+	<pathCollection>
+		<usrpath category="userDirectory" type="output" id="WORKPATH">
+			<path>work/</path>
+			<description>working directory</description>
+		</usrpath>
+
+		<usrpath category="userDirectory" type="output" id="PLOTPATH">
+			<path>work/plots/</path>
+			<description>directory for output plots</description>
+		</usrpath>
+
+		<usrpath category="userDirectory" type="output" id="CLIMOPATH">
+			<path>work/climo/</path>
+			<description>directory for output files</description>
+		</usrpath>
+
+		<usrpath category="userDirectory" type="output" id="REGRPATH">
+			<path>work/regridding/</path>
+			<description>directory for regridding files</description>
+		</usrpath>
+
+		<usrpath category="observation" type="input" id="OBSPATH">
+                        <path>/work/bd0854/b309070/obs/</path>
+			<description>root directory of observational data</description>
+		</usrpath>
+
+	</pathCollection>
+</settings>
