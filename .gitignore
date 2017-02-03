@@ -1,0 +1,8 @@
+*.pyc
+interface_data/curr_trace_indent.txt
+interface_data/ncl.interface
+interface_data/pr_info.tmp
+interface_data/MyVar_info.tmp
+work/
+.svn/
+esgf_coupling_report.txt
