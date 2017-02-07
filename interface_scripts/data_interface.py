@@ -348,7 +348,7 @@ class Ncl_data_interface(Data_interface):
         self.clean_up_interface_folder(self.do_not_remove_these)
 
         fsource = open("interface_data/ncl_interface_templates/ncl.tmpl", "r")
-        ftarget = open("interface_data/ncl.interface", "w")
+        ftarget = open(os.environ['INTERFACE_DATA']+"/ncl.interface", "w")
 
         # Replace template file placeholders, <<[A-Z_]+>>, with
         # configuration data

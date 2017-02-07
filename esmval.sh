@@ -5,6 +5,7 @@ function usage {
 }
 
 esmval_root=`dirname $0`
+export INTERFACE_DATA=/tmp/esmval
 
 if [ $# -ne 2 ]; then
     usage

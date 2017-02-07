@@ -20,7 +20,7 @@
 ;;
 ;;#############################################################################
 
-load "./interface_data/ncl.interface"
+load "$INTERFACE_DATA/ncl.interface"
 
 scriptname = "reformat_scripts/constants.ncl"
 
