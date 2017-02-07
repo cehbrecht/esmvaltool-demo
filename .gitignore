@@ -5,3 +5,6 @@ interface_data/pr_info.tmp
 interface_data/MyVar_info.tmp
 work/
 esgf_coupling_report.txt
+
+# pycharm editor
+.idea
