@@ -12,8 +12,6 @@ from mako.lookup import TemplateLookup
 mylookup = TemplateLookup(directories=[os.path.join(os.path.dirname(__file__), 'templates')],
                           output_encoding='utf-8', encoding_errors='replace')
 
-ESMVAL_ROOT = os.path.join(os.path.dirname(__file__), '..', '..')
-
 
 def diag(name, constraints, start_year, end_year, output_format='pdf', workspace=None):
     # TODO: maybe use result dict
@@ -49,13 +47,13 @@ def run_diag(namelist, workspace='.'):
     LOGGER.debug("NCARG_ROOT=%s", os.environ.get('NCARG_ROOT'))
 
     # build cmd
-    main_py = os.path.join(ESMVAL_ROOT, "main.py")
+    main_py = os.path.join(config.esmval_root(), "main.py")
     logfile = os.path.abspath(os.path.join(workspace, 'log.txt'))
     cmd = ["python", main_py, namelist]
 
     # run cmd
     try:
-        output = check_output(cmd, stderr=STDOUT, cwd=ESMVAL_ROOT)
+        output = check_output(cmd, stderr=STDOUT, cwd=config.esmval_root())
     except CalledProcessError as err:
         LOGGER.exception('esmvaltool failed!')
         raise Exception('esmvaltool failed: {}'.format(err.output))
@@ -92,7 +90,7 @@ def generate_namelist(diag, constraints=None, start_year=2000, end_year=2005, ou
     namelist_templ = mylookup.get_template(namelist)
     rendered_namelist = namelist_templ.render_unicode(
         diag=diag,
-        prefix=ESMVAL_ROOT,
+        prefix=config.esmval_root(),
         workspace=workspace,
         constraints=constraints,
         start_year=start_year,
