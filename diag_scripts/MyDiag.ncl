@@ -52,7 +52,7 @@
 
 ; A temporary file written by the invoking Python script
 ; Passes on a number of variables from Python to NCL
-load "./interface_data/ncl.interface"
+load "$INTERFACE_DATA/ncl.interface"
 
 ; Auxiliary NCL routines
 load "./interface_scripts/auxiliary.ncl"
@@ -102,7 +102,7 @@ end
 
 ; Load variable_info
 begin
-    vardeffile = "interface_data/" + var0 + "_info.tmp"
+    vardeffile = $INTERFACE_DATA + "/" + var0 + "_info.tmp"
     loadscript(vardeffile)
 end
 

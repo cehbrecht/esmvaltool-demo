@@ -397,7 +397,7 @@ class Ncl_data_interface(Data_interface):
                     = self.reparse_variable_info(curr_var, variable_def_dir)
 
                 # Write parsed content to temp-file in interface_data
-                variable_info_file = "interface_data/"\
+                variable_info_file = os.environ['INTERFACE_DATA'] + "/"\
                                      + curr_var\
                                      + "_info.tmp"
                 fvarinfo = open(variable_info_file, "w")
@@ -486,7 +486,7 @@ class R_data_interface(Data_interface):
                     = self.reparse_variable_info(curr_var, variable_def_dir)
 
                 # Write parsed content to temp-file in data_interface
-                variable_info_file = "interface_data/"\
+                variable_info_file = os.environ['INTERFACE_DATA'] + "/"\
                                      + curr_var\
                                      + "_info.tmp"
                 fvarinfo = open(variable_info_file, "w")

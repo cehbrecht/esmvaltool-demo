@@ -68,7 +68,7 @@ end
 
 ; Load var_info
 begin
-    vardeffile = "interface_data/" + var0 + "_info.tmp"
+    vardeffile = "$INTERFACE_DATA/" + var0 + "_info.tmp"
     loadscript(vardeffile)
 end
 
