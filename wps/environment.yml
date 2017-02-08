@@ -1,5 +1,6 @@
 name: wps
 channels:
+- khallock
 - conda-forge
 - defaults
 - birdhouse
@@ -26,7 +27,7 @@ dependencies:
 # esmvaltool
 - esgf-pyclient
 # ncl
-- ncl=6.3.0
+- ncl=6.4.0_beta20170207
 - libnetcdf=4.4.1.1
 - hdf5=1.8.17
 - hdf4=4.2.12
