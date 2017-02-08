@@ -1,7 +1,7 @@
 import os
 import os.path
 import glob
-from subprocess import check_output, STDOUT
+from subprocess import check_output, STDOUT, CalledProcessError
 
 from esmvalwps import config
 
@@ -49,20 +49,22 @@ def run_diag(namelist, workspace='.'):
     LOGGER.debug("NCARG_ROOT=%s", os.environ.get('NCARG_ROOT'))
 
     # build cmd
-    script = os.path.join(ESMVAL_ROOT, "esmval.sh")
+    main_py = os.path.join(ESMVAL_ROOT, "main.py")
     logfile = os.path.abspath(os.path.join(workspace, 'log.txt'))
-    cmd = [script, namelist, logfile]
+    cmd = ["python", main_py, namelist]
 
     # run cmd
     try:
-        check_output(cmd, stderr=STDOUT)
-    except:
+        output = check_output(cmd, stderr=STDOUT, cwd=ESMVAL_ROOT)
+    except CalledProcessError as err:
         LOGGER.exception('esmvaltool failed!')
-
-    # debug: show logfile
-    if LOGGER.isEnabledFor(logging.DEBUG):
-        with open(logfile, 'r') as f:
-            LOGGER.debug(f.read())
+        raise Exception('esmvaltool failed: {}'.format(err.output))
+    else:
+        # debug: show logfile
+        if LOGGER.isEnabledFor(logging.DEBUG):
+            LOGGER.debug(output)
+        with open(logfile, 'w') as f:
+            f.write(output)
 
     # check if data is found
     if os.path.isfile(os.path.join(workspace, 'esgf_coupling_report.txt')):
