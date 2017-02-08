@@ -27,7 +27,7 @@ class launchers(object):
     def __init__(self):
         self.persistent_env_variables = ['ESMValTool_data_root']
         self.filename = os.path.join(os.path.dirname(__file__),                   
-                                        '../interface_data/curr_trace_indent.txt') 
+                                     os.environ['INTERFACE_DATA']+'/curr_trace_indent.txt')
     def convert_arguments(self):
         """
         convert launcher arguments to a dictionary

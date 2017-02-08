@@ -75,8 +75,9 @@ begin
 
     required_verbosity = min((/required_verbosity, 4/))
 
-    cwd  = getenv("ESMValTool_cwd")
-    if (ismissing(cwd)) then
+    ;;cwd  = getenv("ESMValTool_cwd")
+    tempdir = getenv("INTERFACE_DATA")
+    if (ismissing(tempdir)) then
         print("info: " + output_string)
     else  ; Full info output
         indent_step = 3
@@ -90,17 +91,17 @@ begin
             ;; Increase indentation if we're entering an NCL routine
             if (dimsizes(output_string) .eq. 1) then
                 if (isStrSubset(output_string, "<<<<<<<< Entering")) then
-                    indent = asciiread(cwd + \
-                                       "/interface_data/curr_trace_indent.txt",\
+                    indent = asciiread(tempdir + \
+                                       "/curr_trace_indent.txt",\
                                        1, "integer")
                     indent = indent + indent_step
-                    asciiwrite(cwd + "/interface_data/curr_trace_indent.txt",\
+                    asciiwrite(tempdir + "/curr_trace_indent.txt",\
                                indent)
                 end if
             end if
 
             ;; Add a prefix of ">>", "<<" or "  " to output_string
-            indent = asciiread(cwd + "/interface_data/curr_trace_indent.txt",\
+            indent = asciiread(tempdir + "/curr_trace_indent.txt",\
                                      1, "integer")
             if (indent .lt. 1) then
                 indent = 1
@@ -130,11 +131,11 @@ begin
             ;; Decrease indentation if we're leaving an NCL routine
             if (dimsizes(output_string) .eq. 1) then
                 if (isStrSubset(output_string, ">>>>>>>> Leaving")) then
-                    indent = asciiread(cwd + \
-                                       "/interface_data/curr_trace_indent.txt", \
+                    indent = asciiread(tempdir + \
+                                       "/curr_trace_indent.txt", \
                                        1, "integer")
                     indent = indent - indent_step
-                    asciiwrite(cwd + "/interface_data/curr_trace_indent.txt", \
+                    asciiwrite(tempdir + "/curr_trace_indent.txt", \
                                indent)
                 end if
             end if
