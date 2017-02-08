@@ -30,8 +30,10 @@ dependencies:
 - libnetcdf=4.4.1.1
 - hdf5=1.8.17
 - hdf4=4.2.12
-- xorg-libsm=1.2.2
 - icu=58.1
+- xorg-libsm=1.2.2
+- xorg-libxrender
+- xorg-libxext
 - pip:
   - genshi==0.7
   - sphinx-autoapi==0.4.0
