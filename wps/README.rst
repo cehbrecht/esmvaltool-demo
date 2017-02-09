@@ -14,9 +14,9 @@ If Anaconda is not available then a minimal Anaconda will be installed during th
 The installation process setups a conda environment named ``wps``. All additional packages and configuration files are going into this conda environment.
 The location is ``~/.conda/envs/wps``.
 
-Now, check out the code from the ESMValTool subversion repo and start the installation::
+Now, check out the code from the GitHub repo and start the installation::
 
-   $ svn co https://svn.dlr.de/ESM-Diagnostic/source/branches/carsten_dev/
+   $ git clone https://github.com/cehbrecht/esmvaltool-demo.git
    $ cd wps
    $ make clean install
 
