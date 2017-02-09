@@ -14,4 +14,8 @@ output-port = 8090
 #user = www-data
 #etc-user = root
 
+# esgf archive (CMIP5 DKRZ)
+#archive-root = /home/pingu/birdhouse/var/lib/pywps/cache/malleefowl/esgf1.dkrz.de/thredds/fileServer/cmip5
+
+
 
